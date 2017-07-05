@@ -37,16 +37,18 @@ exports.recipeWebhook = (req, res) => {
     console.log('request intent: ', intent);
   });
 
-  let result;
+  let result, data;
   switch (intent) {
     case 'read_ingredients':
-      result = getIngredients(params);
+      data = getIngredients(params);
+      result = `${data}. That's all. Do you want to hear the whole recipe?`;
       break;
-    case 'read_all_steps':
-      result = getFullRecipe(params);
+    case 'read_summary':
+      data = getSummary(params);
+      result = `${data} I will guide you through all steps with more details. Are you ready to start?`;
       break;
     default:
-      result = 'Sorry, I didn\'t find the intent name.';
+      result = 'Sorry, I didn\'t understand your intent.';
   }
 
   res.setHeader('Content-Type', 'application/json');
@@ -60,6 +62,14 @@ const getIngredients = (params) => {
 
   return recipe['ingredients'][0];
 };
+
+const getSummary = (params) => {
+  let category = params.category,
+    id = params.id;
+  let recipe = recipes[category][id];
+
+  return recipe.summary;
+}
 
 const getFullRecipe = (params) => {
   let category = params.category,
