@@ -31,7 +31,7 @@ exports.recipeWebhook = (req, res) => {
   id = recipeContext.parameters.id,
   step = +recipeContext.parameters.step,
   intent = req.body.result.metadata.intentName,
-  params = { category, id, step };
+  params = { category, id, step, intent };
   //write a custom log for debugging
   log.debug(entry, function(err, apiResponse) {
     console.log('this is a custom log');
@@ -55,16 +55,19 @@ exports.recipeWebhook = (req, res) => {
     case 'steps_one_by_one':
       result = readSteps(params);
       break;
-    case 'repeat_current_step':
-      params.step =- 1;
+    case 'start_reading_steps - repeat':
+    case 'steps_one_by_one - repeat':
+      let newStep = params.step - 1;
+      params.step = newStep;
       result = readSteps(params);
       break;
-    case 'repeat_previous_step':
-      params.step =- 2;
-      result = readSteps(params, 'repeat');
+    case 'steps_one_by_one - previous':
+      let prevStep = params.step - 2;
+      params.step = prevStep;
+      result = readSteps(params);
       break;
     default:
-      result = 'Sorry, I didn\'t understand your intent.';
+      result = 'Sorry, I didn\'t understand your intent. Could you repeat please?';
   }
 
   res.setHeader('Content-Type', 'application/json');
@@ -100,24 +103,38 @@ const readSteps = (params) => {
     count = params.step;
   let steps = recipes[category][id]['steps'];
   let currentStep, resultStep;
-  // if (!!command && command == 'repeat') {
-  //   count =- 1;
-  // } else if (!!command && command == 'repeat_previous') {
-  //   count =- 2;
-  // }
+  let preTalk = composeStart(params.intent);
+
   currentStep = steps[count];
   let nextCount = count + 1;
   if (count == 0) {
-    resultStep = `Let's start, then! ${currentStep} When done, call to me!`;
+    resultStep = `${preTalk} ${currentStep} When done, call to me!`;
   } else {
     if (nextCount >= steps.length) {
       resultStep = `${currentStep} That's all, it was final step. I hope you'll like the result!`;
     } else {
-      resultStep = `${currentStep} When done, call to me!`;
+      resultStep = `${preTalk} ${currentStep} When done, call to me!`;
     }
   }
-  log.debug(entry, function(err, apiResponse) {
-    console.log('resultStep: ', resultStep);
-  });
   return resultStep;
 };
+
+const composeStart = (intent) => {
+  const repeatSmallTalk = [
+    'Of course!', 'Sure!', 'No problem!'
+  ];
+  let preTalk = '';
+  switch(intent) {
+    case 'start_reading_steps':
+      preTalk = 'Let\'s start then!';
+      break;
+    case 'start_reading_steps - repeat':
+    case 'steps_one_by_one - repeat':
+    case 'steps_one_by_one - previous':
+      preTalk = repeatSmallTalk[Math.floor(Math.random() * repeatSmallTalk.length)];
+      break;
+    default:
+    preTalk = '';
+  }
+  return preTalk;
+}
