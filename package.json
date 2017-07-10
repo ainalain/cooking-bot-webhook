@@ -1,12 +1,18 @@
 {
-  "name": "leo-tnoqwg",
+  "name": "cooking-bot-webhook",
   "version": "1.0.0",
-  "description": "A nodejs server for handling google api.ai requests.",
+  "description": "A Node.js service for handling Google API.AI requests.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "AI assistant",
+    "bot assistant",
+    "Google API.AI",
+    "Google Cloud Functions"
+  ],
   "author": "Elena Sufieva",
   "license": "ISC",
   "dependencies": {
