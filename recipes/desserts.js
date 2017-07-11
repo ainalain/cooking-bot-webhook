@@ -1,14 +1,14 @@
 module.exports = {
-  "chocolate-cake": {
-    "id": "chocolate-cake",
-    "title": "Chocolate cake",
-    "cookingTime": "120",
+  "tiramisu": {
+    "id": "tiramisu",
+    "title": "tiramisu",
+    "cookingTime": "60",
     "category": "Desserts",
-    "serving": "3",
-    "ingredients": ["3 apples", "half a cup of white sugar","half a cup of flour","half a cup of semolina","around 50 grams of butter","cinnamon"],
+    "serving": "6",
+    "ingredients": ["4 large eggs, 100 grams of sugar, 500 grams of mascarpone cheese, room temperature, 250 grams of specieal cookies - lady fingers (Savoiardi), 350 milliliters of coffee, cocoa powder for dusting, optional: 1 spoon of sweet wine, rum, liqueur, brandy or cognac"],
     "equipment": ["baking dish"],
-    "steps": ["Set the oven to bake at 180°C.", "Grease the foil with olive oil.", "Slice zucchini, sweet pepper and carrot into thin slices. Put the half of the vegetables on the foil in 1 layer.", "Cut the lemons in thin slices, prepare herbs, salt for the fish.", "Make 3-4 large cuts diagonally across each fish on the both sides.", "Fill each of these cuts with herbs, salt and lemon slices.", "Place the fish on a baking sheet and cover with the rest of vegetables.", "Wrap the foil tightly and put the tray in the oven on the middle rack for 45 minutes.", "Get the tray out of the oven, remove the foil from the top of the dish and put it into the oven for 5-7 minutes.", "Enjoy!"],
-    "summary": "You'll need to whip the eggs with sugar and then mix them with hot milk. Then you'll add other ingredients like vanilla, mashed banana pulp or cocoa with nuts and put the mixture into the freezer."
+    "steps": ["Prepare coffee the way you like and let it get cool., If you want, you can add wine, rum, liqueur, brandy, or cognac to the coffee.", "Separate the eggs white from the yolks. Whisp the yolks with sugar.", "Add mascarpone, mix with spatula or spoon.", "Whisp the whites in a thick foam.", "Add the whites to the yolk-mascarpone mass, gently mix.", "Dip savoiardi sticks in cold coffee. Sticks must be dipped very quickly so that they do not get soaked.", "Put the sticks in dense layer in the form. On the sticks put half the cream and smooth.", "Repeat the layer: On the cream again put the sticks, soaked in coffee, then put the remaining cream and smooth.", "Put the form in the refrigerator for 5-6 hours.", "Before serving, dust the tiramisu with cocoa."],
+    "summary": "You'll need to mix yolks, sugar and mascarpone., Dip the cookis in coffee and make layers of coolies and sweet yolks-mascarpone mass in the form. Then put the dish in the fridge for several hours."
   },
   "italian-ice-cream": {
     "id": "italian-ice-cream",
