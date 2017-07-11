@@ -2,7 +2,7 @@ const repeatSmallTalk = [
   'Of course!', 'Sure!', 'No problem!'
 ];
 
-const variousEnd = ['When done, call to me!', 'Then call to me!', 'Say when you\'re ready', 'Call me  after that', 'I wait you do it, call my name!'];
+const variousEnd = ['When done, call to me!', 'Then call to me!', 'Say when you\'re ready', 'Call me  after that', 'I wait you call me!'];
 
 const logger = require('./logger').logger;
 const { log, entry } = logger();
@@ -27,6 +27,7 @@ exports.composeStart = (intent) => {
 exports.composeEnd = (intent) => {
   let talk = '';
   switch (intent) {
+    case 'start_reading_steps':
     case 'steps_one_by_one':
     case 'steps_one_by_one - repeat':
     case 'steps_one_by_one - previous':
